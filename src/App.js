@@ -1,23 +1,38 @@
 import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Switch, Route, Link } from 'react-router-dom';
+
+import AddTodos from "./components/addTodos";
+import TodosList from "./components/todosList";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <div>
+      <nav className="navbar navbar-expand navbar-dark bg-dark">
+        <a href="/todos" className="navbar-brand">
+          TodosList
         </a>
-      </header>
+        <div className="navbar-nav mr-auto">
+          <li className="nav-item">
+            <Link to={"/todos"} className="nav-link">
+              Todos
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link to={"/add"} className="nav-link">
+              Add Todos
+            </Link>
+          </li> 
+        </div>
+      </nav>
+
+      <div>
+        <h2>React Todos</h2>
+        <Switch>
+          <Route exact path={["/", "/todos"]} component={TodosList}></Route>
+          <Route exach path={"add"} component={AddTodos}></Route>
+        </Switch>
+      </div>
     </div>
   );
 }
